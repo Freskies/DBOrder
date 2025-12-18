@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def get_db_from_schema(file_path: str) -> dict[str, list]:
     """
     How to export from SQL Server Management Studio:
@@ -66,7 +63,7 @@ def get_ordered_tables(tables: dict[str, list]) -> list:
             del keys[0]
             attempts = 0
         else:
-            keys = np.roll(keys, -1).tolist()
+            keys = keys[1:] + keys[:1]
             tables[key] = dependencies
             attempts += 1
             if attempts >= len(keys):
